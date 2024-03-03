@@ -31,6 +31,20 @@ function app() {
       });
     },
 
+    // Method to safely convert Markdown to HTML
+    convertMarkdownToHtml(markdownText) {
+      if (marked && typeof marked.parse === "function") {
+        return marked.parse(markdownText);
+      } else {
+        console.error("Markdown conversion library not available.");
+        return markdownText; // Return the original text if conversion is not possible
+      }
+    },
+
+    get renderedPreview() {
+      return this.convertMarkdownToHtml(this.preview);
+    },
+
     copyToClipboard() {
       navigator.clipboard
         .writeText(this.preview)

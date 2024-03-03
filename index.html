@@ -51,14 +51,10 @@
                     <label for="preview" class="block font-medium text-gray-700"
                         >Preview</label
                     >
-                    <textarea
-                        x-model="preview"
-                        id="preview"
-                        name="preview"
-                        class="mt-1 w-full rounded-md border border-gray-300 p-2"
-                        rows="4"
-                        readonly
-                    ></textarea>
+                    <div
+                        x-html="renderedPreview"
+                        class="mt-1 w-full rounded-md border border-gray-300 bg-white p-2"
+                    ></div>
                     <button
                         x-on:click="copyToClipboard"
                         class="mt-2 rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-700"
@@ -68,6 +64,7 @@
                 </div>
             </div>
         </div>
+        <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
         <script defer src="https://unpkg.com/alpinejs"></script>
         <script src="app.js"></script>
     </body>
