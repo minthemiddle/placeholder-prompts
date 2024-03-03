@@ -30,5 +30,18 @@ function app() {
         this.preview = this.preview.replace(regex, placeholder.value);
       });
     },
+
+    copyToClipboard() {
+      navigator.clipboard
+        .writeText(this.preview)
+        .then(() => {
+          // Optional: Display a message or change the button text to indicate the text was copied
+          console.log("Text copied to clipboard");
+        })
+        .catch((err) => {
+          // Optional: Display an error message if the copy failed
+          console.error("Error copying text to clipboard", err);
+        });
+    },
   };
 }
