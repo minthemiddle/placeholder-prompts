@@ -1,7 +1,7 @@
 function app() {
   return {
     prompt: "",
-    placeholder: null,
+    placeholders: [],
     preview: "",
 
     init() {
@@ -9,20 +9,26 @@ function app() {
     },
 
     updatePreview() {
-      const regex = /{{(.*?)}}/;
-      const match = this.prompt.match(regex);
-      if (match) {
+      const regex = /{{(.*?)}}/g;
+      let match;
+      let newPlaceholders = [];
+      while ((match = regex.exec(this.prompt)) !== null) {
         const placeholderName = match[1];
-        if (!this.placeholder || this.placeholder.name !== placeholderName) {
-          this.placeholder = { name: placeholderName, value: "" };
+        const existingPlaceholder = this.placeholders.find(
+          (p) => p.name === placeholderName,
+        );
+        if (existingPlaceholder) {
+          newPlaceholders.push(existingPlaceholder);
+        } else {
+          newPlaceholders.push({ name: placeholderName, value: "" });
         }
-      } else {
-        this.placeholder = null;
       }
-      this.preview = this.prompt.replace(
-        regex,
-        this.placeholder ? this.placeholder.value : "",
-      );
+      this.placeholders = newPlaceholders;
+      this.preview = this.prompt;
+      this.placeholders.forEach((placeholder) => {
+        const regex = new RegExp(`{{${placeholder.name}}}`, "g");
+        this.preview = this.preview.replace(regex, placeholder.value);
+      });
     },
   };
 }
