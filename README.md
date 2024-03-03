@@ -1,3 +1,3 @@
-# Partials Prompter
+# Placeholder Prompts
 
-Construct LLM prompts with placeholder partials.
+Construct LLM prompts with placeholders.
