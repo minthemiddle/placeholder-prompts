@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Partials Prompter</title>
+        <link
+            href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css"
+            rel="stylesheet"
+        />
+    </head>
+    <body class="bg-gray-100">
+        <div class="container mx-auto mt-8 p-4">
+            <h1 class="mb-4 text-2xl font-bold">Partials Prompter</h1>
+            <div x-data="app()" x-init="init()">
+                <div class="mb-4">
+                    <label for="prompt" class="block font-medium text-gray-700"
+                        >Enter Prompt</label
+                    >
+                    <textarea
+                        x-model="prompt"
+                        id="prompt"
+                        name="prompt"
+                        class="mt-1 w-full resize-none rounded-md border border-gray-300 p-2"
+                        rows="4"
+                        @input="updatePreview"
+                    ></textarea>
+                </div>
+                <template x-if="placeholder">
+                    <div class="mb-4">
+                        <label
+                            x-text="placeholder.name"
+                            class="block font-medium text-gray-700"
+                        ></label>
+                        <textarea
+                            x-model="placeholder.value"
+                            class="mt-1 w-full resize-none rounded-md border border-gray-300 p-2"
+                            rows="2"
+                            @input="updatePreview"
+                        ></textarea>
+                    </div>
+                </template>
+                <div class="mb-4">
+                    <label for="preview" class="block font-medium text-gray-700"
+                        >Preview</label
+                    >
+                    <textarea
+                        x-model="preview"
+                        id="preview"
+                        name="preview"
+                        class="mt-1 w-full resize-none rounded-md border border-gray-300 p-2"
+                        rows="4"
+                        readonly
+                    ></textarea>
+                </div>
+            </div>
+        </div>
+        <script defer src="https://unpkg.com/alpinejs"></script>
+        <script src="app.js"></script>
+    </body>
+</html>
