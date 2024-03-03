@@ -21,3 +21,7 @@ And you get sentiments:
 
 Classify the sentences accordingly.
 ```
+
+**Screenshot**
+
+![Screenshot](screenshot.png)
